@@ -1,3 +1,4 @@
+// Loan calculator function
 function calculateLoan() {
   const loanAmount = parseFloat(document.getElementById('loan-amount').value);
   const fortnights = parseInt(document.getElementById('fortnights').value);
@@ -14,3 +15,27 @@ function calculateLoan() {
     Total Repayment: K${totalAmount.toFixed(2)}<br>
     Fortnightly Repayment: K${fortnightlyRepayment.toFixed(2)} over ${fortnights} fortnights`;
 }
+
+// Optional: Smooth scroll for nav links
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const targetID = link.getAttribute('href').substring(1);
+    document.getElementById(targetID).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Optional: Highlight active nav link on scroll
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section');
+  const scrollPos = window.scrollY + 100;
+
+  sections.forEach(section => {
+    if(scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+      const id = section.getAttribute('id');
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+});
